@@ -1,0 +1,22 @@
+<Tela>
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        Label:
+            text: "Olá mundo!"
+        Button:
+            text:'Nosso Trabalhinho'
+    BoxLayout:
+        orientation: 'horizontal'
+        Widget:
+            canvas:
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: 'IMG_0082.JPG'
+        Widget:
+            canvas:
+                Rectangle:
+                    size: self.size     
+                    pos: self.pos
+                    source:'IMG_0083.JPG'
