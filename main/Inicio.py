@@ -11,8 +11,9 @@ class Nosso_jogoApp(App):
     def build(self):
         return Tela()
     
+    
 Nosso_jogoApp().run()
-
+print('olá')
 
 
 
