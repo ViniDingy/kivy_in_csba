@@ -12,11 +12,16 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 class Gerenciador(ScreenManager):
     pass
 
-class Tela(Screen):
+class Menu(Screen):
     imagem_fundo = 'Fundo.jpg'
 
     ##Definição de Fontes##
     pasta_fontes = 'Marbella Army.otf'
+    pass
+
+class Player1(Screen):
+    '''def Gerador_de_Matriz(self):
+'''
     pass
 
 class Nosso_jogoApp(App):

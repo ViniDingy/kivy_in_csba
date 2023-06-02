@@ -1,7 +1,9 @@
-<Gerenciador>
-    Tela:
-
-<Tela>
+<Gerenciador>:
+    Menu:
+        name: 'menu'
+    Player1:
+        name: 'player1'
+<Menu>:
     BoxLayout:
         orientation: 'vertical'
         padding: ('40dp', '40dp', '40dp', '40dp')
@@ -56,6 +58,7 @@
                             font_size: 25 
                             bold: True
                             text:'Iniciar Jogo'
+                            on_release: app.root.current = 'player1'
                 AnchorLayout:
                     anchor_x: 'left'
                     anchor_y: 'bottom'
@@ -63,7 +66,249 @@
                         Label:
                             text:'Som:'
                         CheckBox:   
-                        
-                        
-                    
-            
+<Player1>:
+    BoxLayout:
+        padding: ('20dp', '20dp', '20dp', '20dp')
+        canvas:
+            Color:
+                rgba: 20/255, 20/255, 20/255, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint:(1, .2)
+            padding: ('20dp', '20dp', '20dp', '20dp')
+            canvas.before:
+                Color: 
+                    rgba: 40/255, 40/255, 40/255, .5
+                Rectangle:
+                    pos:self.pos
+                    size: self.size 
+            orientation: 'vertical'
+            Label:
+                pos: 0, 100
+                font_size: 50
+                bold: True
+                text: 'Player 1'
+        BoxLayout:
+            orientation: 'vertical'
+            padding: ('20dp', '20dp', '20dp', '20dp')
+            canvas:
+                Color:
+                    rgba: 40/255, 40/255, 40/255, .5
+                Rectangle:
+                    pos: self.pos 
+                    size: self.size 
+            GridLayout:
+                cols: 10
+                canvas:
+                    Color:
+                        rgba: 40/255, 40/255, 40/255, .5
+                    Rectangle:
+                        pos: self.pos 
+                        size: self.size 
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                
+
+
+
