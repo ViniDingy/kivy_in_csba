@@ -3,6 +3,8 @@
         name: 'menu'
     Player1:
         name: 'player1'
+    Player2:
+        name: 'player2'
 <Menu>:
     BoxLayout:
         orientation: 'vertical'
@@ -77,7 +79,7 @@
                 size: self.size
         orientation: 'vertical'
         BoxLayout:
-            size_hint:(1, .2)
+            size_hint:(1, .15)
             padding: ('20dp', '20dp', '20dp', '20dp')
             canvas.before:
                 Color: 
@@ -87,10 +89,17 @@
                     size: self.size 
             orientation: 'vertical'
             Label:
-                pos: 0, 100
+                pos: self.pos
                 font_size: 50
                 bold: True
                 text: 'Player 1'
+            Widget:
+                canvas:
+                    Color:
+                        rgba: 20/255, 20/255, 237/255, 1
+                    Rectangle:
+                        pos:self.pos
+                        size: 800, 5
         BoxLayout:
             orientation: 'vertical'
             padding: ('20dp', '20dp', '20dp', '20dp')
@@ -308,6 +317,257 @@
                     text:'oi'
                 Button:
                     text:'oi'
+                    on_press: app.root.current = 'player2'
+<Player2>:
+    BoxLayout:
+        padding: ('20dp', '20dp', '20dp', '20dp')
+        canvas:
+            Color:
+                rgba: 20/255, 20/255, 20/255, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint:(1, .15)
+            padding: ('20dp', '20dp', '20dp', '20dp')
+            canvas.before:
+                Color: 
+                    rgba: 40/255, 40/255, 40/255, .5
+                Rectangle:
+                    pos:self.pos
+                    size: self.size 
+            orientation: 'vertical'
+            Label:
+                pos: self.pos
+                font_size: 50
+                bold: True
+                text: 'Player 2'
+            Widget:
+                canvas:
+                    Color:
+                        rgba: 237/255, 20/255, 20/255, 1
+                    Rectangle:
+                        pos:self.pos
+                        size: 800, 5
+        BoxLayout:
+            orientation: 'vertical'
+            padding: ('20dp', '20dp', '20dp', '20dp')
+            canvas:
+                Color:
+                    rgba: 40/255, 40/255, 40/255, .5
+                Rectangle:
+                    pos: self.pos 
+                    size: self.size 
+            GridLayout:
+                cols: 10
+                canvas:
+                    Color:
+                        rgba: 40/255, 40/255, 40/255, .5
+                    Rectangle:
+                        pos: self.pos 
+                        size: self.size 
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                Button:
+                    text:'oi'
+                    on_press: app.root.current = 'menu'
                 
 
 

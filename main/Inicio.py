@@ -24,6 +24,9 @@ class Player1(Screen):
 '''
     pass
 
+class Player2(Screen):
+    pass
+
 class Nosso_jogoApp(App):
     def build(self):
         Window.size = (1000, 1000)
