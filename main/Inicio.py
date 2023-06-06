@@ -1,7 +1,7 @@
 ##Inicio do código de trabalho da equipe## Aline Tosatti, Eduardo Lubian, Rogerio **, Vinicius Herrera
 #Atenção!# Este código utiliza da biblioteca kivy e precisa ser compilado no máximo até o python 3.10
-from kivy.config import Config
-Config.set('graphics', 'resizable', False)
+#from kivy.config import Config
+#Config.set('graphics', 'resizable', False)
 
 from kivy.app import App 
 from kivy.uix.boxlayout import BoxLayout
