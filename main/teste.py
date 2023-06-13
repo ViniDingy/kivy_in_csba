@@ -7,7 +7,7 @@ from kivy.uix.label import Label
 
 class BatalhaNavalGame(GridLayout):
     def __init__(self, **kwargs):
-        super(BatalhaNavalGame, self).__init__(**kwargs)
+        super().__init__(**kwargs)
         self.cols = 5
         self.navios_posicionados = 0
         self.tabuleiro = []
