@@ -12,6 +12,8 @@ from kivy.core.audio import SoundLoader
 class Jogo:
     def __init__(self, **kwargs):
         self.turno = 0 
+        self.turno_posiçãop1 = 0
+        self.turno_posiçãop2 = 0
         self.p1 = self.criar_tabuleiro()
         self.navios_restantesp1 = 0
         self.p2 = self.criar_tabuleiro()
@@ -34,12 +36,9 @@ class Jogo:
             Tabuleiro.append(linha)
         return Tabuleiro
     
-    def acao_botão_p1(self, button):
-        print("apertou o botão")
-        button_id = button.text
-        print(button_id)
-        bt_id_1 = int(button_id[0])
-        bt_id_2 = int(button_id[2])
+    def acao_botão_p1(self, bt_id_1, bt_id_2):
+        button_id = f'{bt_id_1}{bt_id_2}'
+        button = getattr(self.ids, button_id)
         button.background_color = (0, 0, 1, 1)
         self.p1[(bt_id_1)][(bt_id_2)] = 1
         for i in range(len(self.p1)):
@@ -53,13 +52,9 @@ class Jogo:
         log_atual.append(bt_id_2)
         self.log_de_jogop1.append(log_atual)
 
-    def acao_botão_p2(self, button):
-        print("apertou o botão")
-        button_id = button.text
-        print(button_id)
-        bt_id_1 = int(button_id[0])
-        bt_id_2 = int(button_id[2])
+    def acao_botão_p2(self, button, bt_id_1, bt_id_2):
         button.background_color = (1, 0, 0, 1)
+        print(button.id)
         self.p2[(bt_id_1)][(bt_id_2)] = 1
         for i in range(len(self.p2)):
             for j in range(len(self.p2[i])):
@@ -81,7 +76,7 @@ class Jogo:
                     text=f"{linha},{coluna}",
                     size_hint=(0.2, 0.2),
                     font_size=24,
-                    on_press = self.acao_botão_p1
+                    on_press = self.posicionar_naviosp1
                 )
                 bt.id = f"{linha},{coluna}"
                 self.ids.gradtab1.add_widget(bt)
@@ -98,15 +93,17 @@ class Jogo:
                 bt.id = f"{linha},{coluna}"
                 self.ids.gradtab2.add_widget(bt)
 
-''' def posicionar_navios(self, button):
-        if self.navios_restantesp1 < 1:
-            self.acao_botão_p1
-        else:
-            if self.navios_restantes < 8 and self.navios_restantes %2 == 0:
-                button_id = button.text
-                bt_id_1 = int(button_id[0])
-                bt_id_2 = int(button_id[2])
-                if self.log_de_jogop1[0] - (bt_id_1 - bt_id_2):'''
+    def posicionar_naviosp1(self, button):
+        button_id = button.text
+        bt_id_1 = int(button_id[0])
+        bt_id_2 = int(button_id[2])
+        if self.p1[bt_id_1][bt_id_2] == 1:
+            print("Selecione um botão não selecionado")
+            return
+        if self.turno_posiçãop1 <= 4:
+            self.acao_botão_p1(bt_id_1, bt_id_2)
+            bt_id_2 += 1
+            self.acao_botão_p1(button, bt_id_1, bt_id_2)
 
 class Gerenciador(ScreenManager):
     pass
