@@ -7,16 +7,14 @@ from kivy.app import App
 from kivy.uix.button import Button
 from kivy.core.window import Window
 from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.uix.gridlayout import GridLayout
 from kivy.core.audio import SoundLoader
 
 class Jogo:
     def __init__(self, **kwargs):
         self.turno = 0 
-        self.tabuleiro = self.criar_tabuleiro()
-        self.p1 = self.tabuleiro
+        self.p1 = self.criar_tabuleiro()
         self.navios_restantesp1 = 0
-        self.p2 = self.tabuleiro
+        self.p2 = self.criar_tabuleiro()
         self.navios_restantesp2 = 0
         self.log_de_jogop1 = []
         self.log_de_jogop2 = []
@@ -24,8 +22,8 @@ class Jogo:
     def retorna_p1(self):
         return self.p1
     
-    def identifica_posicionamento(self, log_de_jogo):
-        pass
+    def retorna_p2(self):
+        return self.p2
 
     def criar_tabuleiro(self):
         Tabuleiro = []
@@ -54,8 +52,26 @@ class Jogo:
         log_atual.append(bt_id_1)
         log_atual.append(bt_id_2)
         self.log_de_jogop1.append(log_atual)
-        
-    
+
+    def acao_botão_p2(self, button):
+        print("apertou o botão")
+        button_id = button.text
+        print(button_id)
+        bt_id_1 = int(button_id[0])
+        bt_id_2 = int(button_id[2])
+        button.background_color = (1, 0, 0, 1)
+        self.p2[(bt_id_1)][(bt_id_2)] = 1
+        for i in range(len(self.p2)):
+            for j in range(len(self.p2[i])):
+                print('[%1d]'%self.p2[i][j], end ='')
+            print("\n")
+        self.navios_restantesp2 += 1
+        print(self.navios_restantesp2)
+        log_atual = []
+        log_atual.append(bt_id_1)
+        log_atual.append(bt_id_2)
+        self.log_de_jogop2.append(log_atual)
+
     # Começar por Aqui
 
     def criar_gridtabuleiro(self):
@@ -69,6 +85,18 @@ class Jogo:
                 )
                 bt.id = f"{linha},{coluna}"
                 self.ids.gradtab1.add_widget(bt)
+
+    def criar_gridtabuleiro_p2(self):
+        for linha in range(len(self.p2)):
+            for coluna in range(len(self.p2[linha])):
+                bt = Button(
+                    text=f"{linha},{coluna}",
+                    size_hint=(0.2, 0.2),
+                    font_size=24,
+                    on_press = self.acao_botão_p2
+                )
+                bt.id = f"{linha},{coluna}"
+                self.ids.gradtab2.add_widget(bt)
 
 ''' def posicionar_navios(self, button):
         if self.navios_restantesp1 < 1:
@@ -86,7 +114,10 @@ class Gerenciador(ScreenManager):
 class Menu(Screen, Jogo):
     def __init__(self, **kwargs):
         super().__init__()
-        self.som = SoundLoader.load("The Majestic Valkyrie.wav")
+    
+    
+        if self.ids.check.active == True:
+            self.som = SoundLoader.load("The Majestic Valkyrie.wav")
     imagem_fundo = 'Fundo.jpg'
     
 
@@ -106,11 +137,17 @@ class Player1(Screen, Jogo):
             print("\n")
         self.criar_gridtabuleiro()
         
-        
-
 class Player2(Screen, Jogo):
     def __init__(self, **kwargs):
         super().__init__()
+
+    def Inicio(self):
+        tabuleiro_de_p2 = Jogo().retorna_p2()
+        for i in range(len(tabuleiro_de_p2)):
+            for j in range(len(tabuleiro_de_p2[i])):
+                print('[%1d]'%tabuleiro_de_p2[i][j], end ='')
+            print("\n")
+        self.criar_gridtabuleiro_p2()
 
 class Nosso_jogoApp(App):
     def build(self):

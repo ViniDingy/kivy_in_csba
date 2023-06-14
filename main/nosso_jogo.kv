@@ -68,6 +68,8 @@
                         Label:
                             text:'Som:'
                         CheckBox:   
+                            id: check
+                            
 <Player1>:
     BoxLayout:
         padding: ('20dp', '20dp', '20dp', '20dp')
@@ -79,7 +81,7 @@
                 size: self.size
         orientation: 'vertical'
         BoxLayout:
-            size_hint:(1, .15)
+            size_hint:(1, .4)
             padding: ('20dp', '20dp', '20dp', '20dp')
             canvas.before:
                 Color: 
@@ -94,10 +96,15 @@
                 bold: True
                 text: 'Player 1'
             Button:
+                size_hint: .4, 1
+                pos_hint:{'center_x': 0.5, 'center_y': 0.1}
                 text:'Iniciar'
                 on_release: root.Inicio()
             Button:
-                text:'finalizar'
+                size_hint: .4, 1
+                pos_hint:{'center_x': 0.5, 'center_y': 0.1}
+                text:'Proximo'
+                on_release: app.root.current = 'player2'
             Widget:
                 canvas:
                     Color:
@@ -105,10 +112,13 @@
                     Rectangle:
                         pos:self.pos
                         size: 800, 5
+            Label:
+                id: chat1
+                text:'Olá'
         BoxLayout:
             id: tabuleiro1
             orientation: 'vertical'
-            padding: ('40dp', '40dp', '40dp', '40dp')
+            padding: ('20dp', '20dp', '20dp', '20dp')
             canvas:
                 Color:
                     rgba: 40/255, 40/255, 40/255, .5
@@ -131,7 +141,7 @@
                 size: self.size
         orientation: 'vertical'
         BoxLayout:
-            size_hint:(1, .15)
+            size_hint:(1, .4)
             padding: ('20dp', '20dp', '20dp', '20dp')
             canvas.before:
                 Color: 
@@ -145,6 +155,16 @@
                 font_size: 50
                 bold: True
                 text: 'Player 2'
+            Button:
+                size_hint: .4, 1
+                pos_hint:{'center_x': 0.5, 'center_y': 0.1}
+                text:'Iniciar'
+                on_release: root.Inicio()
+            Button:
+                size_hint: .4, 1
+                pos_hint:{'center_x': 0.5, 'center_y': 0.1}
+                text:'Proximo'
+                on_release: app.root.current = 'player1'
             Widget:
                 canvas:
                     Color:
@@ -152,9 +172,13 @@
                     Rectangle:
                         pos:self.pos
                         size: 800, 5
+            Label:
+                id: chat2
+                text:"Olá"
         BoxLayout:
+            id: tabuleiro2
             orientation: 'vertical'
-            padding: ('20dp', '20dp', '20dp', '20dp')
+            padding: ('40dp', '40dp', '40dp', '40dp')
             canvas:
                 Color:
                     rgba: 40/255, 40/255, 40/255, .5
@@ -162,10 +186,6 @@
                     pos: self.pos 
                     size: self.size 
             GridLayout:
+                id:gradtab2
                 cols: 10
-                canvas:
-                    Color:
-                        rgba: 40/255, 40/255, 40/255, .5
-                    Rectangle:
-                        pos: self.pos 
-                        size: self.size
+                rows: 10
