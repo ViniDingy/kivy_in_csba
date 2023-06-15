@@ -11,6 +11,7 @@ from kivy.core.audio import SoundLoader
 
 class Jogo:
     def __init__(self, **kwargs):
+        self.botoes = {}
         self.turno = 0 
         self.turno_posiçãop1 = 0
         self.turno_posiçãop2 = 0
@@ -26,6 +27,9 @@ class Jogo:
     
     def retorna_p2(self):
         return self.p2
+    
+    def pinta_botoes(self, id):
+        self.botoes[id].background_color = (0, 0, 1, 1)
 
     def criar_tabuleiro(self):
         Tabuleiro = []
@@ -37,14 +41,15 @@ class Jogo:
         return Tabuleiro
     
     def acao_botão_p1(self, bt_id_1, bt_id_2):
-        button_id = f'{bt_id_1}{bt_id_2}'
-        button = getattr(self.ids, button_id)
-        button.background_color = (0, 0, 1, 1)
         self.p1[(bt_id_1)][(bt_id_2)] = 1
         for i in range(len(self.p1)):
             for j in range(len(self.p1[i])):
                 print('[%1d]'%self.p1[i][j], end ='')
             print("\n")
+        bt_id_1 = str(bt_id_1)
+        bt_id_2 = str(bt_id_2)
+        button_id = f'{bt_id_1},{bt_id_2}'
+        self.pinta_botoes(button_id)
         self.navios_restantesp1 += 1
         print(self.navios_restantesp1)
         log_atual = []
@@ -80,6 +85,7 @@ class Jogo:
                 )
                 bt.id = f"{linha},{coluna}"
                 self.ids.gradtab1.add_widget(bt)
+                self.botoes[bt.id] = bt
 
     def criar_gridtabuleiro_p2(self):
         for linha in range(len(self.p2)):
@@ -92,18 +98,36 @@ class Jogo:
                 )
                 bt.id = f"{linha},{coluna}"
                 self.ids.gradtab2.add_widget(bt)
+                self.botoes[bt.id] = bt
 
     def posicionar_naviosp1(self, button):
+        
+        print(button.id)
+        tipo_id = type(button.id)
+        tipo_button = type(self.p1[0][0])
         button_id = button.text
         bt_id_1 = int(button_id[0])
         bt_id_2 = int(button_id[2])
+
         if self.p1[bt_id_1][bt_id_2] == 1:
             print("Selecione um botão não selecionado")
             return
-        if self.turno_posiçãop1 <= 4:
+        
+        if self.turno_posiçãop1 <= 3:
             self.acao_botão_p1(bt_id_1, bt_id_2)
             bt_id_2 += 1
-            self.acao_botão_p1(button, bt_id_1, bt_id_2)
+            self.acao_botão_p1(bt_id_1, bt_id_2)
+            self.turno_posiçãop1 +=1
+            print(f"com essa jogada = {self.turno_posiçãop1}")
+
+        if self.turno_posiçãop1 >= 4 and self.turno_posiçãop1 <= 6:
+            self.acao_botão_p1(bt_id_1, bt_id_2)
+            bt_id_2 += 1
+            self.acao_botão_p1(bt_id_1, bt_id_2)
+            bt_id_2 += 1
+            self.acao_botão_p1(bt_id_1, bt_id_2)
+            self.turno_posiçãop1 +=1
+            print(f"com essa jogada = {self.turno_posiçãop1}")
 
 class Gerenciador(ScreenManager):
     pass
