@@ -13,27 +13,10 @@ class Jogo:
     def __init__(self, **kwargs):
         self.botoes = {}
         self.turno = 0 
-        self.turno_posiçãop1 = 0
-        self.turno_posiçãop2 = 0
-        self.p1 = self.criar_tabuleiro()
-        self.navios_restantesp1 = 0
-        self.p2 = self.criar_tabuleiro()
-        self.navios_restantesp2 = 0
-        self.log_de_jogop1 = []
-        self.log_de_jogop2 = []
-        self.rotação = 0
+    
+    def pinta_botoes(self, id):
+        self.botoes[id].background_color = (0, 0, 1, 1)
 
-    def retorna_p1(self):
-        return self.p1
-    
-    def retorna_p2(self):
-        return self.p2
-    
-    def pinta_botoes(self, id, cor):
-        if cor == "azul":
-            self.botoes[id].background_color = (0, 0, 1, 1)
-        elif cor == "vermelho":
-            self.botoes[id].background_color = (1, 0, 0, 1)
     def criar_tabuleiro(self):
         Tabuleiro = []
         for linha in range(10):
@@ -52,7 +35,7 @@ class Jogo:
         bt_id_1 = str(bt_id_1)
         bt_id_2 = str(bt_id_2)
         button_id = f'{bt_id_1},{bt_id_2}'
-        self.pinta_botoes(button_id, "azul")
+        self.pinta_botoes(button_id)
         self.navios_restantesp1 += 1
         print(self.navios_restantesp1)
         log_atual = []
@@ -60,22 +43,20 @@ class Jogo:
         log_atual.append(bt_id_2)
         self.log_de_jogop1.append(log_atual)
 
-    def acao_botão_p2(self, bt_id_1, bt_id_2):
-        self.p1[(bt_id_1)][(bt_id_2)] = 1
+    def acao_botão_p2(self, button, bt_id_1, bt_id_2):
+        button.background_color = (1, 0, 0, 1)
+        print(button.id)
+        self.p2[(bt_id_1)][(bt_id_2)] = 1
         for i in range(len(self.p2)):
             for j in range(len(self.p2[i])):
                 print('[%1d]'%self.p2[i][j], end ='')
             print("\n")
-        bt_id_1 = str(bt_id_1)
-        bt_id_2 = str(bt_id_2)
-        button_id = f'{bt_id_1},{bt_id_2}'
-        self.pinta_botoes(button_id, "vermelho")
-        self.navios_restantesp1 += 1
-        print(self.navios_restantesp1)
+        self.navios_restantesp2 += 1
+        print(self.navios_restantesp2)
         log_atual = []
         log_atual.append(bt_id_1)
         log_atual.append(bt_id_2)
-        self.log_de_jogop1.append(log_atual)
+        self.log_de_jogop2.append(log_atual)
 
     # Começar por Aqui
 
@@ -99,7 +80,7 @@ class Jogo:
                     text=f"{linha},{coluna}",
                     size_hint=(0.2, 0.2),
                     font_size=24,
-                    on_press = self.posicionar_naviosp2
+                    on_press = self.acao_botão_p2
                 )
                 bt.id = f"{linha},{coluna}"
                 self.ids.gradtab2.add_widget(bt)
@@ -118,82 +99,21 @@ class Jogo:
             print("Selecione um botão não selecionado")
             return
         
-        elif self.turno_posiçãop1 >= 0 and self.turno_posiçãop1 <= 3:
-            self.ids.chat1.text = f'Posicione o {self.turno_posiçãop1 + 2}º barco'
-            for i in range(2):
-                self.acao_botão_p1(bt_id_1, bt_id_2)
-                bt_id_2 += 1
+        if self.turno_posiçãop1 <= 3:
+            self.acao_botão_p1(bt_id_1, bt_id_2)
+            bt_id_2 += 1
+            self.acao_botão_p1(bt_id_1, bt_id_2)
             self.turno_posiçãop1 +=1
             print(f"com essa jogada = {self.turno_posiçãop1}")
 
-        elif self.turno_posiçãop1 >= 4 and self.turno_posiçãop1 <= 6:
-            self.ids.chat1.text = f'Posicione o {self.turno_posiçãop1 + 2}º barco'
-            for i in range(3):
-                self.acao_botão_p1(bt_id_1, bt_id_2)
-                bt_id_1 += 1
+        if self.turno_posiçãop1 >= 4 and self.turno_posiçãop1 <= 6:
+            self.acao_botão_p1(bt_id_1, bt_id_2)
+            bt_id_2 += 1
+            self.acao_botão_p1(bt_id_1, bt_id_2)
+            bt_id_2 += 1
+            self.acao_botão_p1(bt_id_1, bt_id_2)
             self.turno_posiçãop1 +=1
             print(f"com essa jogada = {self.turno_posiçãop1}")
-        
-        elif self.turno_posiçãop1 >= 7 and self.turno_posiçãop1 <= 8:
-            self.ids.chat1.text = f'Posicione o {self.turno_posiçãop1 + 2}º barco'
-            for i in range(4):
-                self.acao_botão_p1(bt_id_1, bt_id_2)
-                bt_id_2 += 1
-            self.turno_posiçãop1 +=1
-            print(f"com essa jogada = {self.turno_posiçãop1}")
-
-        elif self.turno_posiçãop1 >= 9:
-            self.ids.chat1.text = f'Posicione o {self.turno_posiçãop1 + 2}º barco'
-            for i in range(5):
-                self.acao_botão_p1(bt_id_1, bt_id_2)
-                bt_id_2 += 1
-            self.turno_posiçãop1 +=1
-            print(f"com essa jogada = {self.turno_posiçãop1}")
-
-    def posicionar_naviosp2(self, button):
-        
-        print(button.id)
-        tipo_id = type(button.id)
-        tipo_button = type(self.p2[0][0])
-        button_id = button.text
-        bt_id_1 = int(button_id[0])
-        bt_id_2 = int(button_id[2])
-
-        if self.p2[bt_id_1][bt_id_2] == 1:
-            print("Selecione um botão não selecionado")
-            return
-        
-        elif self.turno_posiçãop2 >= 0 and self.turno_posiçãop2 <= 3:
-            self.ids.chat2.text = f'Posicione o {self.turno_posiçãop2 + 2}º barco'
-            for i in range(2):
-                self.acao_botão_p2(bt_id_1, bt_id_2)
-                bt_id_2 += 1
-            self.turno_posiçãop2 +=1
-            print(f"com essa jogada = {self.turno_posiçãop2}")
-
-        elif self.turno_posiçãop2 >= 4 and self.turno_posiçãop2 <= 6:
-            self.ids.chat2.text = f'Posicione o {self.turno_posiçãop2 + 2}º barco'
-            for i in range(3):
-                self.acao_botão_p2(bt_id_1, bt_id_2)
-                bt_id_2 += 1
-            self.turno_posiçãop2 +=1
-            print(f"com essa jogada = {self.turno_posiçãop2}")
-        
-        elif self.turno_posiçãop2 >= 7 and self.turno_posiçãop2 <= 8:
-            self.ids.chat2.text = f'Posicione o {self.turno_posiçãop2 + 2}º barco'
-            for i in range(4):
-                self.acao_botão_p2(bt_id_1, bt_id_2)
-                bt_id_2 += 1
-            self.turno_posiçãop2 +=1
-            print(f"com essa jogada = {self.turno_posiçãop2}")
-
-        elif self.turno_posiçãop2 >= 9:
-            self.ids.chat2.text = f'Posicione o {self.turno_posiçãop2 + 2}º barco'
-            for i in range(5):
-                self.acao_botão_p2(bt_id_1, bt_id_2)
-                bt_id_2 += 1
-            self.turno_posiçãop2 +=1
-            print(f"com essa jogada = {self.turno_posiçãop2}")
 
 class Gerenciador(ScreenManager):
     pass
@@ -201,6 +121,7 @@ class Gerenciador(ScreenManager):
 class Menu(Screen, Jogo):
     def __init__(self, **kwargs):
         super().__init__()
+    
     
         if self.ids.check.active == True:
             self.som = SoundLoader.load("The Majestic Valkyrie.wav")
@@ -214,6 +135,10 @@ class Menu(Screen, Jogo):
 class Player1(Screen, Jogo):
     def __init__(self, **kwargs):
         super().__init__()
+        self.turno_posiçãop1 = 0
+        self.p1 = self.criar_tabuleiro()
+        self.navios_restantesp1 = 0
+        self.log_de_jogop1 = []
 
     def Inicio(self):
         tabuleiro_de_p1 = Jogo().retorna_p1()
@@ -226,7 +151,11 @@ class Player1(Screen, Jogo):
 class Player2(Screen, Jogo):
     def __init__(self, **kwargs):
         super().__init__()
-
+        self.turno_posiçãop2 = 0
+        self.p2 = self.criar_tabuleiro()
+        self.navios_restantesp2 = 0
+        self.log_de_jogop2 = []
+        
     def Inicio(self):
         tabuleiro_de_p2 = Jogo().retorna_p2()
         for i in range(len(tabuleiro_de_p2)):
