@@ -89,6 +89,7 @@ class Jogo:
                     on_press = self.posicionar_naviosp1
                 )
                 bt.id = f"{linha},{coluna}"
+                self.ids[f"{linha},{coluna}"] = bt
                 self.ids.gradtab1.add_widget(bt)
                 self.botoes[bt.id] = bt
 
